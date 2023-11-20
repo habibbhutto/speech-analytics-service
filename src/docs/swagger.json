@@ -1,0 +1,141 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+      "title": "Speech Analysis API",
+      "description": "Presidents' Speech Analaysis API",
+      "termsOfService": "",
+      "contact": {
+        "email": "habibbhutto@gmail.com"
+      },
+      "license": {
+        "name": "MIT",
+        "url": "https://github.com/habibbhutto/speech-analysis-svc/blob/main/LICENSE"
+      },
+      "version": "1.0.0"
+    },
+    "externalDocs": {
+      "description": "Find out more about speech analysis service",
+      "url": "https://github.com/habibbhutto/speech-analysis-svc"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:8080",
+        "description": "Dev server"
+      }
+    ],
+    "tags": [],
+    "security": [],
+    "paths": {
+      "/api/evaluation": {
+        "get": {
+          "tags": ["evaluation"],
+          "summary": "Gets the evaluation of speech data",
+          "description": "Returns the evaluation object",
+          "operationId": "getEvaluation",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/EvaluationResponse"
+                  }
+                },
+                "application/xml": {
+                  "schema": {
+                    "$ref": "#/components/schemas/EvaluationResponse"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiResponse"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiResponse"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Forbidden",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiResponse"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not found",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "EvaluationResponse": {
+          "type": "object",
+          "properties": {
+            "field1": {
+              "type": "string",
+              "example": ""
+            },
+            "field2": {
+              "type": "string",
+              "example": ""
+            },
+            "field3": {
+              "type": "string",
+              "example": ""
+            }
+          },
+          "xml": {
+            "name": "EvaluationResponse"
+          }
+        },
+        "ApiResponse": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "type": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            }
+          },
+          "xml": {
+            "name": "##default"
+          }
+        }
+      },
+      "requestBodies": {},
+      "securitySchemes": {}
+    }
+  }
+  

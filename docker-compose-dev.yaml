@@ -1,0 +1,28 @@
+services:
+  app:
+    build: .
+    command: pnpm run start:dev
+    environment:
+      - PG_HOST=postgresql
+      - PG_USER=test
+      - PG_PASSWORD=test
+      - PG_DB=test
+    ports:
+      - '8080:8080'
+    volumes:
+      - .:/app
+    depends_on:
+      - postgresql
+  postgresql:
+    image: 'postgres:15.0-alpine'
+    environment:
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_DB=test
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'localhost:5432']
+      interval: 30s
+      timeout: 10s
+      retries: 5

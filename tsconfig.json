@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "lib": ["es6"],
+    "types": [
+      // "reflect-metadata",
+      "node",
+      "jest"
+    ],
+    "allowJs": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "typeRoots": ["node_modules/@types"],
+    "resolveJsonModule": true,
+    "module": "CommonJS",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2020",
+    "sourceMap": true,
+    "outDir": "./bin",
+    "paths": {
+      "*": ["node_modules/*", "vendor/*"]
+    },
+    "baseUrl": ".",
+    "incremental": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false
+  },
+  "ts-node": {
+    "swc": false
+  }
+}
