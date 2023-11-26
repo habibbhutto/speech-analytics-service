@@ -1,20 +1,7 @@
-CREATE TABLE datafiles (
-    id UUID PRIMARY KEY NOT NULL DEFAULT gen_random_uuid(),
-
-    file_url VARCHAR NOT NULL,
-    
-    created TIMESTAMPTZ DEFAULT NOW(),
-    updated TIMESTAMPTZ DEFAULT NOW()
-);
-
-CREATE INDEX datafiles_file_url_idx ON datafiles (file_url);
-CREATE INDEX datafiles_created_idx ON datafiles (created);
-CREATE INDEX datafiles_updated_idx ON datafiles (updated);
-
----------------------------------------------------------------------
-
 CREATE TABLE speeches (
     id UUID PRIMARY KEY NOT NULL DEFAULT gen_random_uuid(),
+    
+    file_url VARCHAR NOT NULL,
     
     speaker VARCHAR NOT NULL,
     topic VARCHAR NOT NULL,
@@ -24,6 +11,8 @@ CREATE TABLE speeches (
     created TIMESTAMPTZ DEFAULT NOW(),
     updated TIMESTAMPTZ DEFAULT NOW()
 );
+
+CREATE INDEX datafiles_file_url_idx ON speeches (file_url);
 
 CREATE INDEX speeches_speaker_idx ON speeches (speaker);
 CREATE INDEX speeches_topic_idx ON speeches (topic);

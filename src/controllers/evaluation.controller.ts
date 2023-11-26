@@ -10,21 +10,13 @@ export class EvaluationController {
 
     public async getSpeechEvaluation(req: Request, res: Response) {
         try {
-            const { query } = req as any;
-            console.log('query: ', query);
+            const { query: { url, year } } = req as any;
+            console.log('query: ', { url, year });
 
-            const {url, year} = query;
-            
             await this.speechAnalytics.processDatafiles(url);
-            const evaluation = await this.speechAnalytics.getSpeechEvaluation(year);
+            const evaluation = await this.speechAnalytics.getSpeechEvaluation(url, year);
 
             res.status(200).send(evaluation);
-            // expected response model
-            // {
-            //     mostSpeeches: '',
-            //     mostSecurity: '',
-            //     leastWordy: ''
-            // }
         } catch (error) {
             res.status(500).send(error);
         }

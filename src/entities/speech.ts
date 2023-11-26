@@ -12,6 +12,10 @@ export default class Speech {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
+    @Column({name: 'file_url'})
+    @Index()
+    file_url: string;
+
     @Column()
     @Index()
     speaker: string;
@@ -37,8 +41,9 @@ export default class Speech {
     @UpdateDateColumn()
     updated: Date; 
 
-    public static create(speech: any): Speech {
+    public static create(fileUrl: string, speech: any): Speech {
       const speechEntity = new Speech();
+      speechEntity.file_url = fileUrl;
       speechEntity.speaker = speech.Speaker;
       speechEntity.topic = speech.Topic;
       speechEntity.speech_date = speech.Date;

@@ -1,7 +1,7 @@
 {
-  "name": "speech-analysis",
+  "name": "speech-analytics",
   "version": "1.0.0",
-  "description": "Speech Analysis API",
+  "description": "Speech Analytics API",
   "author": "habibbhutto@gmail.com",
   "license": "MIT",
   "rootDir": ".",
