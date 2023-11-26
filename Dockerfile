@@ -7,7 +7,7 @@ RUN npm install --global pnpm
 # Allow for Docker caching of node modules
 COPY package.json /app/package.json
 
-# if garbanzo would need to install custom packages one day
+# if speech analysis would need to install custom packages one day
 # COPY .npmrc /app/.npmrc
 
 RUN pnpm install

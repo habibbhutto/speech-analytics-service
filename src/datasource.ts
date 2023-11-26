@@ -2,10 +2,9 @@ import { DataSource } from 'typeorm';
 import migrations from './migrations';
 import entities from './entities';
 import config from './config';
-// const db = config.db();
 
 const dataSource = new DataSource({
-  applicationName: 'garbanzo',
+  applicationName: 'speech-analysis',
   type: 'postgres',
   url: config.dbUrl(),
   entities: entities,

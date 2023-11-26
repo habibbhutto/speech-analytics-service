@@ -18,28 +18,6 @@ class Config {
       };
     }
   
-    googleTasks() {
-      const clientConfig = {
-        CLIENT_ID: this.required('CLIENT_ID'),
-        CLIENT_SECRET: this.required('CLIENT_SECRET'),
-        REDIRECT_URL: this.required('REDIRECT_URL'),
-        SCOPES: [
-          'https://www.googleapis.com/auth/user.emails.read',
-          'https://www.googleapis.com/auth/tasks',
-          'https://www.googleapis.com/auth/tasks.readonly',
-          'profile',
-        ],
-      };
-  
-      return clientConfig;
-    }
-  
-    tokenSecret() {
-      return {
-        TOKEN_SECRET: this.required('TOKEN_SECRET'),
-      };
-    }
-  
     db() {
       return {
         PG_HOST: this.required('PG_HOST'),

@@ -27,7 +27,7 @@ async function bootstrap() {
   const app = ceateApp();
 
   const server = app.listen(PORT, () => {
-    logger.info(`garbanzo listening at http://${HOST}:${PORT}`, context);
+    logger.info(`speech analysis service listening at http://${HOST}:${PORT}`, context);
   });
 
   // configure exit handler for graceful shutdown

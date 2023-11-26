@@ -1,0 +1,28 @@
+{
+    "politicians": {
+        "politician a": {
+            "totalWords": 100,
+            "totalSpeeches": 5,
+            "topics": {
+                "security": 2,
+                "economy": 2,
+                "climate": 1
+            }
+        },
+        "politician b": {
+            "totalWords": 100,
+            "totalSpeeches": 5,
+            "topics": {
+                "security": 2,
+                "economy": 2,
+                "climate": 1
+            }
+        }
+    },
+    "topics": {
+        "internal Security": {
+            "politician a": 2,
+            "politician b": 1
+        }
+    }
+}
