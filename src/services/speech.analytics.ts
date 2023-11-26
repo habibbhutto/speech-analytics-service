@@ -1,6 +1,4 @@
 import axios from 'axios';
-// import Datafile from '../entities/datafile';
-// import DatafileRepository from "../repositories/datafile.repository";
 import Speech from '../entities/speech';
 import SpeechRepository from "../repositories/speech.repository";
 import csv from 'csvtojson';

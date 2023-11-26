@@ -12,7 +12,7 @@ CREATE TABLE speeches (
     updated TIMESTAMPTZ DEFAULT NOW()
 );
 
-CREATE INDEX datafiles_file_url_idx ON speeches (file_url);
+CREATE INDEX speeches_file_url_idx ON speeches (file_url);
 
 CREATE INDEX speeches_speaker_idx ON speeches (speaker);
 CREATE INDEX speeches_topic_idx ON speeches (topic);
