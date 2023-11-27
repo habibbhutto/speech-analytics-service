@@ -2,7 +2,22 @@
 
 A backend service provides endpoints to get the analysis of presidents' speeches. At 
 this point of time, it's a simple service with one endpoint, moving forward it could be
-extended with other features as the needs arise.
+extended with other features as the need arises.
+
+Assumptions:
+1. The data in remote CSV files is assumed to be final, there would be no new data added to a given file by any external actor.
+2. Given assumption #1, it is assumed that the service doesn't need to re-sync the CSV data.
+3. GET /api/evaluation is supposed to evaluate data of given URLs only.
+4. The CSV files may contain large amount of data.
+
+Design decisions:
+1. Based on assumption #4, the system leverages SQL database to store and query the large data.
+1. The system streams down the CSV data to an SQL table.
+2. The table is queried using SQL queries generating evaluation efficiently.
+3. Given assumption #2, If the CSV file URL has already been downloaded in past, it doesn't need to redownload the data, it saves time and computation resources.
+4. Based on assumption #3, it filters the data for given URLs so that it evaluates only given URLs.
+
+If the assumptions #1 and #2 change in the future, then current design can easily be extended to support caching/re-sync kind of mechanism by leveraging `updated` field in the SQL table. 
 
 ## Dependencies
 * nodejs V18
@@ -11,15 +26,12 @@ extended with other features as the needs arise.
 * docker latest with `docker compose` plugin configured  
 
 ## Features
-* Provides an endpoint to retrieve basic statistics of presidents' speeches 
+* Provides an endpoint to retrieve basic statistics of political speeches 
 * Provides swagger docs of the endpoint 
-* Cache the evaluated URLs for a preconfigured time duration
-* Refresh the cache by passing the refresh=true in query parameters 
 
 ## Future improvements
 * Terraform or some sort of automation to provision infra
 * K8s deployement template
-* Redis for centralized cache
 * Application monitoring 
 * Better application logging tools
 
@@ -38,10 +50,15 @@ docker compose up
 
 ### Step 3. Call the endpoint to get the evaluation 
 
-Open the following link into your browser
+Execute the following command
 
 ```
-http://localhost:8080/api/evaluate?url=[your url here]
+curl http://localhost:8080/api/evaluate?url=[your url here]
+```
+or
+
+```
+curl http://localhost:8080/api/evaluate?url=[your url here]&url=[your url here]
 ```
 
 ## Contributing
@@ -64,22 +81,13 @@ docker compose -f docker-compose-db.yaml
 ```
 #### Step 2. Running the tests  
 
-Run the **unit tests** by executing the following command
+Run the **tests** by executing the following command
 ```
 pnpm run tests
 ```
 Or if you prefer `npm`
 ```
-npm run tests
-```
-
-Run the **e2e tests** by executing the following command
-```
-pnpm run tests:e2e
-```
-Or if you prefer `npm`
-```
-npm run tests:e2e
+pnpm run tests
 ```
 
 ### Developing the app with live changes
@@ -99,7 +107,7 @@ As soon as you save your changes the app would restart automatically.
 ### Developing the app using local nodejs environment
 You would need to run postgresql instance using docker.
 
-#### Step 1. Sping the postgresql instance
+#### Step 1. Spin the postgresql instance
 ```
 docker compose -f docker-compose-db.yaml
 ```
@@ -116,22 +124,7 @@ Running the tests watching for changes
 pnpm run tests:watch
 ```
 
-Running the e2e tests
-```
-pnpm run tests:e2e
-```
-
-Running the e2e tests watching for changes
-```
-pnpm run tests:e2e:watch
-```
-
 Running the app watching for changes
 ```
 pnpm run start:dev
-```
-
-Running the worker watching for changes
-```
-pnpm run start:worker:dev
 ```
