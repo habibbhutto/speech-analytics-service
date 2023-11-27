@@ -39,7 +39,7 @@
     "graphql": "^16.8.0",
     "jsonwebtoken": "^9.0.0",
     "lru-cache": "6.0.0",
-    "nock": "13.0.11",
+    "nock": "^13.3.8",
     "open": "^9.1.0",
     "pg": "^8.11.0",
     "reflect-metadata": "^0.1.13",

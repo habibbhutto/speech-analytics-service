@@ -6,10 +6,9 @@ import csv from 'csvtojson';
 export class SpeechAnalytics {
     public SpeechAnalytics() { }
 
-    public async getSpeechEvaluation(fileUrl: any, year: number) {
-        const _year = year ? year : 2013;
+    public async getSpeechEvaluation(fileUrl: any, year: number = 2013) {
         const fileUrls: string[] = Array.isArray(fileUrl) ? fileUrl : [fileUrl];
-        const mostSpeeches = await SpeechRepository.getSpeakerWithMostSpeeches(fileUrls, _year);
+        const mostSpeeches = await SpeechRepository.getSpeakerWithMostSpeeches(fileUrls, year);
         const mostSecurity = await SpeechRepository.getSpeakerWithMostSecuritySpeeches(fileUrls);
         const leastWordy = await SpeechRepository.getLeastWordySpeaker(fileUrls);
 
@@ -43,7 +42,6 @@ export class SpeechAnalytics {
         await csv().fromStream(response.data).subscribe((speechJson) => {
             return new Promise(async (resolve, reject) => {
                 try {
-                    console.log(speechJson);
                     const speech = Speech.create(fileUrl, speechJson);
                     await SpeechRepository.save(speech);
                     resolve();
