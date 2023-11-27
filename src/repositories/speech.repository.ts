@@ -37,22 +37,19 @@ const SpeechRepository = dataSource.getRepository(Speech).extend({
         return this._getUnambigousAnswer(results, 'wordiness');
 
     },
-    _getUnambigousAnswer(results: any, field: string) {
+    _getUnambigousAnswer(results: Array<any>, field: string) {
         // there are results
-        if (results.length > 0 &&
-            (
-                // if results have one row that's the unambigous answer
-                results.length === 1 ||
-                // if the top two in results have different counts 
-                // that means the top 1 is unambigous answer
-                results[0][field] !== results[1][field]
-            )
-        ) {
-            return results[0].speaker;
+        const one = results.at(0);
+        const two = results.at(1);
+
+        // if one is undefined there is no answer 
+        // if the top records have same field coult answer is ambigous
+        if (!one || (one && two && two[field] == one[field])) {
+            return null;
         }
 
-        // otherwise it's ambigous or has no answer
-        return null;
+        // otherwise it has a unambigous answer
+        return one.speaker;
     }
 });
 
