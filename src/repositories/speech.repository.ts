@@ -2,19 +2,19 @@ import Speech from "../entities/speech";
 import dataSource from "../datasource";
 
 const SpeechRepository = dataSource.getRepository(Speech).extend({
-    async getSpeakersWithMostSpeeches(fileUrls: string[], year: number): Promise<string> {
+    async getSpeakerWithMostSpeeches(fileUrls: string[], year: number): Promise<string> {
         const results = await SpeechRepository.createQueryBuilder('speech')
             .select('speaker')
             .addSelect('count(speaker) as most_speeches')
             .where(`DATE_PART('Year', speech_date) = :year`, { year })
-            .andWhere('file_url IN (:...fileUrls)', { fileUrls })
+            .andWhere(`file_url in(:...fileUrls)`, { fileUrls })
             .groupBy('speaker')
             .orderBy('most_speeches', 'DESC')
             .take(2)
             .execute();
         return this._getUnambigousAnswer(results, 'most_speeches');
     },
-    async getSpeakersWithMostSecuritySpeechesOfAllTime(fileUrls: string[]): Promise<string> {
+    async getSpeakerWithMostSecuritySpeeches(fileUrls: string[]): Promise<string> {
         const results = await SpeechRepository.createQueryBuilder('speech')
             .select('speaker')
             .addSelect(`count(speaker) filter (where topic ~ 'Security') as most_security`)
@@ -25,7 +25,7 @@ const SpeechRepository = dataSource.getRepository(Speech).extend({
             .execute();
         return this._getUnambigousAnswer(results, 'most_security');
     },
-    async getLeastWordySpeakerOfAllTime(fileUrls: string[]): Promise<string> {
+    async getLeastWordySpeaker(fileUrls: string[]): Promise<string> {
         const results = await SpeechRepository.createQueryBuilder('speech')
             .select('speaker')
             .addSelect('sum(words) as wordiness')

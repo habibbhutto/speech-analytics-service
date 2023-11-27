@@ -9,9 +9,9 @@ export class SpeechAnalytics {
     public async getSpeechEvaluation(fileUrl: any, year: number) {
         const _year = year ? year : 2013;
         const fileUrls: string[] = Array.isArray(fileUrl) ? fileUrl : [fileUrl];
-        const mostSpeeches = await SpeechRepository.getSpeakersWithMostSpeeches(fileUrls, _year);
-        const mostSecurity = await SpeechRepository.getSpeakersWithMostSecuritySpeechesOfAllTime(fileUrls);
-        const leastWordy = await SpeechRepository.getLeastWordySpeakerOfAllTime(fileUrls);
+        const mostSpeeches = await SpeechRepository.getSpeakerWithMostSpeeches(fileUrls, _year);
+        const mostSecurity = await SpeechRepository.getSpeakerWithMostSecuritySpeeches(fileUrls);
+        const leastWordy = await SpeechRepository.getLeastWordySpeaker(fileUrls);
 
         return {
             mostSpeeches,
