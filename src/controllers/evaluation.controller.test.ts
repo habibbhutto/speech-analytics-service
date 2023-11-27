@@ -5,6 +5,8 @@ import dataSource from '../datasource';
 import SpeechRepository from '../repositories/speech.repository';
 import createApp from '../app';
 
+jest.mock('../utils/logger');
+
 describe('EvaluationController', () => {
     beforeAll(async () => {
         await dataSource.initialize();

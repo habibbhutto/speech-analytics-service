@@ -2,6 +2,8 @@ import Speech from '../entities/speech';
 import dataSource from '../datasource';
 import SpeechRepository from './speech.repository';
 
+jest.mock('../utils/logger');
+
 describe('SpeechRepository', () => {
     beforeAll(async () => {
         await dataSource.initialize();

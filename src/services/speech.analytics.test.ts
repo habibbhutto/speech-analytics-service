@@ -4,6 +4,8 @@ import Speech from "../entities/speech";
 import SpeechRepository from "../repositories/speech.repository";
 import SpeechAnalytics from "./speech.analytics";
 
+jest.mock('../utils/logger');
+
 describe('SpeechAnalytics', () => {
     const speechAnalytics: SpeechAnalytics = new SpeechAnalytics();
 
