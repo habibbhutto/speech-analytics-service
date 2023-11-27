@@ -200,9 +200,9 @@ describe('SpeechAnalytics', () => {
     describe('processDatafiles()', () => {
         it('processes data files for an array of urls', async () => {
             const fileUrl = 'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en.csv'
-            const scope = nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
+            nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
                 .get('/politics_en.csv')
-                .replyWithFile(200, __dirname + '/data.test/politics_en.csv', {
+                .replyWithFile(200, __dirname + '/../../test.data/politics_en.csv', {
                     'Content-Type': 'text/csv',
                 });
             
@@ -217,9 +217,9 @@ describe('SpeechAnalytics', () => {
         });
         it('processes data files for a single url', async () => {
             const fileUrl = 'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en.csv'
-            const scope = nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
+            nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
                 .get('/politics_en.csv')
-                .replyWithFile(200, __dirname + '/data.test/politics_en.csv', {
+                .replyWithFile(200, __dirname + '/../../test.data/politics_en.csv', {
                     'Content-Type': 'text/csv',
                 });
             
@@ -234,9 +234,9 @@ describe('SpeechAnalytics', () => {
         });
         it('does nothing if the url has been processed before', async () => {
             const fileUrl = 'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en.csv'
-            const scope = nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
+            nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
                 .get('/politics_en.csv')
-                .replyWithFile(200, __dirname + '/data.test/politics_en.csv', {
+                .replyWithFile(200, __dirname + '/../../test.data/politics_en.csv', {
                     'Content-Type': 'text/csv',
                 });
             
