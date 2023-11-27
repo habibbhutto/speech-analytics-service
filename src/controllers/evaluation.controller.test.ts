@@ -21,7 +21,7 @@ describe('EvaluationController', () => {
             const fileUrl = 'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en.csv'
             nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
                 .get('/politics_en.csv')
-                .replyWithFile(200, __dirname + '/../../test.data/politics_en.csv', {
+                .replyWithFile(200, __dirname + '/../../test/data/politics_en.csv', {
                     'Content-Type': 'text/csv',
                 });
 
@@ -48,11 +48,11 @@ describe('EvaluationController', () => {
             const fileUrl2 = 'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en2.csv'
             nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
                 .get('/politics_en1.csv')
-                .replyWithFile(200, __dirname + '/../../test.data/politics_en.csv', {
+                .replyWithFile(200, __dirname + '/../../test/data/politics_en.csv', {
                     'Content-Type': 'text/csv',
                 })
                 .get('/politics_en2.csv')
-                .replyWithFile(200, __dirname + '/../../test.data/politics_en.csv', {
+                .replyWithFile(200, __dirname + '/../../test/data/politics_en.csv', {
                     'Content-Type': 'text/csv',
                 });
 
@@ -80,11 +80,11 @@ describe('EvaluationController', () => {
             const fileUrl2 = 'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en2.csv'
             nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
                 .get('/politics_en1.csv')
-                .replyWithFile(200, __dirname + '/../../test.data/politics_en.csv', {
+                .replyWithFile(200, __dirname + '/../../test/data/politics_en.csv', {
                     'Content-Type': 'text/csv',
                 })
                 .get('/politics_en2.csv')
-                .replyWithFile(200, __dirname + '/../../test.data/politics_en.csv', {
+                .replyWithFile(200, __dirname + '/../../test/data/politics_en.csv', {
                     'Content-Type': 'text/csv',
                 });
 
@@ -111,7 +111,7 @@ describe('EvaluationController', () => {
             const fileUrl = 'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en.csv'
             nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
                 .get('/politics_en.csv')
-                .replyWithFile(200, __dirname + '/../../test.data/politics_en.csv', {
+                .replyWithFile(200, __dirname + '/../../test/data/politics_en.csv', {
                     'Content-Type': 'text/csv',
                 });
 
@@ -137,7 +137,7 @@ describe('EvaluationController', () => {
             const fileUrl = 'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en.ambiguity.csv'
             nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
                 .get('/politics_en.ambiguity.csv')
-                .replyWithFile(200, __dirname + '/../../test.data/politics_en.ambiguity.csv', {
+                .replyWithFile(200, __dirname + '/../../test/data/politics_en.ambiguity.csv', {
                     'Content-Type': 'text/csv',
                 });
 

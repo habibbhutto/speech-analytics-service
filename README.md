@@ -1,7 +1,7 @@
-# Speech Analysis Service
+# Speech Analytics Service
 
-A backend service provides endpoints to get the analysis of presidents' speeches. At 
-this point of time, it's a simple service with one endpoint, moving forward it could be
+Speech Analytics is a backend service that provides endpoints to get the analysis of political speeches. At 
+this point of time, it's a simple service with one endpoint `GET /api/evaluation`, moving forward it could be
 extended with other features as the need arises.
 
 Assumptions:
@@ -11,13 +11,15 @@ Assumptions:
 4. The CSV files may contain large amount of data.
 
 Design decisions:
-1. Based on assumption #4, the system leverages SQL database to store and query the large data.
+1. Based on assumption #4, the system leverages a SQL database to store and query the large data.
 1. The system streams down the CSV data to an SQL table.
 2. The table is queried using SQL queries generating evaluation efficiently.
 3. Given assumption #2, If the CSV file URL has already been downloaded in past, it doesn't need to redownload the data, it saves time and computation resources.
 4. Based on assumption #3, it filters the data for given URLs so that it evaluates only given URLs.
 
-If the assumptions #1 and #2 change in the future, then current design can easily be extended to support caching/re-sync kind of mechanism by leveraging `updated` field in the SQL table. 
+If the assumptions #1 and #2 change in the future, then current design can easily be extended to support caching/re-sync kind of mechanism by leveraging the `updated` field in the SQL table. 
+
+For demo [click here](https://drive.google.com/file/d/1txFcSgZVDOYLmSfF-VAykOetD404cznT/view?usp=drive_link). For more details please visit [this document](https://docs.google.com/document/d/1bgzhiYDDLzpp0YVitLYvNOZWKBM9WWE9WT--sp3cYZI/edit?usp=drive_link).
 
 ## Dependencies
 * nodejs V18
@@ -26,10 +28,12 @@ If the assumptions #1 and #2 change in the future, then current design can easil
 * docker latest with `docker compose` plugin configured  
 
 ## Features
-* Provides an endpoint to retrieve basic statistics of political speeches 
-* Provides swagger docs of the endpoint 
+* Provides an endpoint `GET /api/evaluation` to retrieve basic statistics of political speeches, it requires one or more Url(s) to remote CSV data in the `url` query parameter.
+* Downloads and stores the remote data in an SQL database for improved efficiency.
+* Provides swagger docs of the endpoint.
 
 ## Future improvements
+* adding retry mechanism to download of remote CSV data
 * Terraform or some sort of automation to provision infra
 * K8s deployement template
 * Application monitoring 
@@ -50,7 +54,11 @@ docker compose up
 
 ### Step 3. Call the endpoint to get the evaluation 
 
-Execute the following command
+#### API Docs
+Click [http://localhost:8080/](http://localhost:8080/) to open up swagger docs.
+
+#### Curl command
+Execute the following command to call the endpoint using `curl`.
 
 ```
 curl http://localhost:8080/api/evaluate?url=[your url here]
@@ -87,7 +95,7 @@ pnpm run tests
 ```
 Or if you prefer `npm`
 ```
-pnpm run tests
+npm run tests
 ```
 
 ### Developing the app with live changes

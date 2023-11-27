@@ -204,7 +204,7 @@ describe('SpeechAnalytics', () => {
             const fileUrl = 'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en.csv'
             nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
                 .get('/politics_en.csv')
-                .replyWithFile(200, __dirname + '/../../test.data/politics_en.csv', {
+                .replyWithFile(200, __dirname + '/../../test/data/politics_en.csv', {
                     'Content-Type': 'text/csv',
                 });
             
@@ -221,7 +221,7 @@ describe('SpeechAnalytics', () => {
             const fileUrl = 'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en.csv'
             nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
                 .get('/politics_en.csv')
-                .replyWithFile(200, __dirname + '/../../test.data/politics_en.csv', {
+                .replyWithFile(200, __dirname + '/../../test/data/politics_en.csv', {
                     'Content-Type': 'text/csv',
                 });
             
@@ -238,7 +238,7 @@ describe('SpeechAnalytics', () => {
             const fileUrl = 'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en.csv'
             nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
                 .get('/politics_en.csv')
-                .replyWithFile(200, __dirname + '/../../test.data/politics_en.csv', {
+                .replyWithFile(200, __dirname + '/../../test/data/politics_en.csv', {
                     'Content-Type': 'text/csv',
                 });
             
