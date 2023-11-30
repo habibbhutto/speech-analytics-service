@@ -1,9 +1,9 @@
 import nock from 'nock';
 import request from 'supertest';
 import { In } from 'typeorm';
+import createApp from '../app';
 import dataSource from '../datasource';
 import SpeechRepository from '../repositories/speech.repository';
-import createApp from '../app';
 
 jest.mock('../utils/logger');
 
@@ -106,7 +106,7 @@ describe('EvaluationController', () => {
 
             await SpeechRepository.delete({ file_url: In([fileUrl1, fileUrl2]) });
         });
-        
+
         it('returns null if there is no answer', async () => {
             const fileUrl = 'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en.csv'
             nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
@@ -132,7 +132,7 @@ describe('EvaluationController', () => {
 
             await SpeechRepository.delete({ file_url: fileUrl });
         });
-        
+
         it('returns null if there is ambiguity', async () => {
             const fileUrl = 'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en.ambiguity.csv'
             nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
@@ -174,9 +174,7 @@ describe('EvaluationController', () => {
             const fileUrl = 'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en.csv'
             nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
                 .get('/politics_en.csv')
-                .reply(500, {
-                    message: 'something went terribly wrong'
-                });
+                .reply(500, { message: 'something went terribly wrong' });
 
             await SpeechRepository.delete({ file_url: fileUrl });
 

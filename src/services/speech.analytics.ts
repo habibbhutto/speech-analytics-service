@@ -1,4 +1,5 @@
 import axios from 'axios';
+import axiosRetry from 'axios-retry';
 import logger from '../utils/logger';
 import Speech from '../entities/speech';
 import SpeechRepository from "../repositories/speech.repository";
@@ -53,7 +54,17 @@ export class SpeechAnalytics {
 
         logger.info(`processing data file ${fileUrl}`, context);
         // otherwise download file stream and store it in database
-        const response = await axios({ url: fileUrl, responseType: 'stream' });
+        const client = axios.create();
+        axiosRetry(client, {
+            retries: 3,
+            retryDelay: axiosRetry.exponentialDelay,
+            onRetry(retryCount, error, requestConfig) {
+                logger.info(JSON.stringify(error), context);
+                logger.info(`${retryCount} retring GET ${fileUrl}`, context);
+            },
+        });
+
+        const response = await client({ url: fileUrl, responseType: 'stream' });
         await csv().fromStream(response.data).subscribe((speechJson) => {
             return new Promise(async (resolve, reject) => {
                 try {
@@ -66,6 +77,7 @@ export class SpeechAnalytics {
                 }
             });
         });
+
         logger.info(`data file ${fileUrl} processed successfully`, context);
     }
 }
