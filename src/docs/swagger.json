@@ -1,182 +1,181 @@
 {
-    "openapi": "3.1.0",
-    "info": {
-      "title": "Speech Analytics API",
-      "description": "Speech Analytics API",
-      "termsOfService": "",
-      "contact": {
-        "email": "habibbhutto@gmail.com"
-      },
-      "license": {
-        "name": "MIT",
-        "url": "https://github.com/habibbhutto/speech-analytics-svc/blob/main/LICENSE"
-      },
-      "version": "1.0.0"
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Speech Analytics API",
+    "description": "Speech Analytics API",
+    "termsOfService": "",
+    "contact": {
+      "email": "habibbhutto@gmail.com"
     },
-    "externalDocs": {
-      "description": "Find out more about speech analytics service",
-      "url": "https://github.com/habibbhutto/speech-analytics-svc"
+    "license": {
+      "name": "MIT",
+      "url": "https://github.com/habibbhutto/speech-analytics-svc/blob/main/LICENSE"
     },
-    "servers": [
-      {
-        "url": "http://localhost:8080",
-        "description": "Dev server"
-      }
-    ],
-    "tags": [],
-    "security": [],
-    "paths": {
-      "/api/evaluation": {
-        "get": {
-          "tags": ["evaluation"],
-          "summary": "Gets the evaluation of speech data",
-          "description": "Returns the evaluation object",
-          "operationId": "getEvaluation",
-          "parameters": [
-            {
-              "in": "query",
-              "name": "url",
-              "schema": {
-                "type": "array",
-                "items": {
-                  "type": "string"
+    "version": "1.0.0"
+  },
+  "externalDocs": {
+    "description": "Find out more about speech analytics service",
+    "url": "https://github.com/habibbhutto/speech-analytics-svc"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Dev server"
+    }
+  ],
+  "tags": [],
+  "security": [],
+  "paths": {
+    "/api/evaluation": {
+      "get": {
+        "tags": ["evaluation"],
+        "summary": "Gets the evaluation of speech data",
+        "description": "Returns the evaluation object",
+        "operationId": "getEvaluation",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "url",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EvaluationResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EvaluationResponse"
                 }
               }
             }
-          ],
-          "responses": {
-            "200": {
-              "description": "successful operation",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/EvaluationResponse"
-                  }
-                },
-                "application/xml": {
-                  "schema": {
-                    "$ref": "#/components/schemas/EvaluationResponse"
-                  }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
                 }
               }
-            },
-            "400": {
-              "description": "Bad request",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/ApiResponse"
-                  }
+            }
+          },
+          "401": {
+            "description": "Unauthorized request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
                 }
               }
-            },
-            "401": {
-              "description": "Unauthorized request",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/ApiResponse"
-                  }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
                 }
               }
-            },
-            "403": {
-              "description": "Forbidden",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/ApiResponse"
-                  }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
                 }
               }
-            },
-            "404": {
-              "description": "Not found",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/ApiResponse"
-                  }
+            }
+          },
+          "408": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
                 }
               }
-            },
-            "408": {
-              "description": "Not found",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/ApiResponse"
-                  }
+            }
+          },
+          "500": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
                 }
               }
-            },
-            "500": {
-              "description": "Not found",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/ApiResponse"
-                  }
-                }
-              }
-            },
-            "508": {
-              "description": "Not found",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/ApiResponse"
-                  }
+            }
+          },
+          "508": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
                 }
               }
             }
           }
         }
       }
-    },
-    "components": {
-      "schemas": {
-        "EvaluationResponse": {
-          "type": "object",
-          "properties": {
-            "mostSpeeches": {
-              "type": "string",
-              "example": ""
-            },
-            "mostSecurity": {
-              "type": "string",
-              "example": ""
-            },
-            "leastWordy": {
-              "type": "string",
-              "example": ""
-            }
+    }
+  },
+  "components": {
+    "schemas": {
+      "EvaluationResponse": {
+        "type": "object",
+        "properties": {
+          "mostSpeeches": {
+            "type": "string",
+            "example": ""
           },
-          "xml": {
-            "name": "EvaluationResponse"
+          "mostSecurity": {
+            "type": "string",
+            "example": ""
+          },
+          "leastWordy": {
+            "type": "string",
+            "example": ""
           }
         },
-        "ApiResponse": {
-          "type": "object",
-          "properties": {
-            "code": {
-              "type": "integer",
-              "example": 400 
-            },
-            "type": {
-              "type": "string"
-            },
-            "message": {
-              "type": "string"
-            }
-          },
-          "xml": {
-            "name": "##default"
-          }
+        "xml": {
+          "name": "EvaluationResponse"
         }
       },
-      "requestBodies": {},
-      "securitySchemes": {}
-    }
+      "ApiResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "example": 400
+          },
+          "type": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "##default"
+        }
+      }
+    },
+    "requestBodies": {},
+    "securitySchemes": {}
   }
-  
+}

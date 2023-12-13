@@ -1,3 +1,3 @@
-import Speech from "./speech";
+import Speech from './speech';
 
-export default [ Speech ];
+export default [Speech];
