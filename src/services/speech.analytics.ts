@@ -62,7 +62,7 @@ export class SpeechAnalytics {
     axiosRetry(client, {
       retries: 3,
       retryDelay: axiosRetry.exponentialDelay,
-      onRetry(retryCount, error, requestConfig) {
+      onRetry(retryCount, error, _requestConfig) {
         logger.info(JSON.stringify(error), context);
         logger.info(`${retryCount} retring GET ${fileUrl}`, context);
       },
