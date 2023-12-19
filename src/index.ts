@@ -27,7 +27,10 @@ async function bootstrap() {
   const app = ceateApp();
 
   const server = app.listen(PORT, () => {
-    logger.info(`speech analysis service listening at http://${HOST}:${PORT}`, context);
+    logger.info(
+      `speech analytics service listening at http://${HOST}:${PORT}`,
+      context
+    );
   });
 
   // configure exit handler for graceful shutdown
