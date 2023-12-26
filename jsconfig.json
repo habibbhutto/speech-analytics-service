@@ -1,10 +1,6 @@
 {
-    "typeAcquisition": {
-        "include": [
-            "jest"
-        ],
-        "exclude": [
-            "nock"
-        ]
-    }
+  "typeAcquisition": {
+    "include": ["jest"],
+    "exclude": ["nock"]
+  }
 }

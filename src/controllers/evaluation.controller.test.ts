@@ -20,6 +20,7 @@ describe('EvaluationController', () => {
     it('returns evaluation for a single url', async () => {
       const fileUrl =
         'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en.csv';
+
       nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
         .get('/politics_en.csv')
         .replyWithFile(200, __dirname + '/../../test/data/politics_en.csv', {
@@ -51,6 +52,7 @@ describe('EvaluationController', () => {
         'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en1.csv';
       const fileUrl2 =
         'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en2.csv';
+
       nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
         .get('/politics_en1.csv')
         .replyWithFile(200, __dirname + '/../../test/data/politics_en.csv', {
@@ -86,6 +88,7 @@ describe('EvaluationController', () => {
         'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en1.csv';
       const fileUrl2 =
         'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en2.csv';
+
       nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
         .get('/politics_en1.csv')
         .replyWithFile(200, __dirname + '/../../test/data/politics_en.csv', {
@@ -119,6 +122,7 @@ describe('EvaluationController', () => {
     it('returns null if there is no answer', async () => {
       const fileUrl =
         'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en.csv';
+
       nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
         .get('/politics_en.csv')
         .replyWithFile(200, __dirname + '/../../test/data/politics_en.csv', {
@@ -148,6 +152,7 @@ describe('EvaluationController', () => {
     it('returns null if there is ambiguity', async () => {
       const fileUrl =
         'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en.ambiguity.csv';
+
       nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
         .get('/politics_en.ambiguity.csv')
         .replyWithFile(
@@ -189,6 +194,7 @@ describe('EvaluationController', () => {
     it('returns 500 when there is internal server error', async () => {
       const fileUrl =
         'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en.csv';
+
       nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
         .get('/politics_en.csv')
         .reply(500, { message: 'something went terribly wrong' });
