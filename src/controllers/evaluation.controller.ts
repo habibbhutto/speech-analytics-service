@@ -14,10 +14,12 @@ export class EvaluationController {
       fileName: __filename,
       operationName: 'EvaluationController.getSpeechEvaluation',
     };
+
     try {
       const {
         query: { url, year },
       } = req as any;
+
       logger.info(
         `request received, query: ${JSON.stringify({ url, year })}`,
         context
