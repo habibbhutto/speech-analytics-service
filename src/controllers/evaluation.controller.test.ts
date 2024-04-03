@@ -8,6 +8,8 @@ import SpeechRepository from '../repositories/speech.repository';
 jest.mock('../utils/logger');
 
 describe('EvaluationController', () => {
+  const baseUrl: string = 'https://fid-recruiting.s3-eu-west-1.amazonaws.com';
+
   beforeAll(async () => {
     await dataSource.initialize();
   });
@@ -18,10 +20,9 @@ describe('EvaluationController', () => {
 
   describe('GET api/evaluation', () => {
     it('returns evaluation for a single url', async () => {
-      const fileUrl =
-        'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en.csv';
+      const fileUrl = `${baseUrl}/politics_en.csv`;
 
-      nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
+      nock(baseUrl)
         .get('/politics_en.csv')
         .replyWithFile(200, __dirname + '/../../test/data/politics_en.csv', {
           'Content-Type': 'text/csv',
@@ -48,12 +49,10 @@ describe('EvaluationController', () => {
     });
 
     it('returns evaluation for multiple urls', async () => {
-      const fileUrl1 =
-        'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en1.csv';
-      const fileUrl2 =
-        'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en2.csv';
+      const fileUrl1 = `${baseUrl}/politics_en1.csv`;
+      const fileUrl2 = `${baseUrl}/politics_en2.csv`;
 
-      nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
+      nock(baseUrl)
         .get('/politics_en1.csv')
         .replyWithFile(200, __dirname + '/../../test/data/politics_en.csv', {
           'Content-Type': 'text/csv',
@@ -84,12 +83,10 @@ describe('EvaluationController', () => {
     });
 
     it('returns evaluation for for a custom year', async () => {
-      const fileUrl1 =
-        'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en1.csv';
-      const fileUrl2 =
-        'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en2.csv';
+      const fileUrl1 = `${baseUrl}/politics_en1.csv`;
+      const fileUrl2 = `${baseUrl}/politics_en2.csv`;
 
-      nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
+      nock(baseUrl)
         .get('/politics_en1.csv')
         .replyWithFile(200, __dirname + '/../../test/data/politics_en.csv', {
           'Content-Type': 'text/csv',
@@ -120,10 +117,9 @@ describe('EvaluationController', () => {
     });
 
     it('returns null if there is no answer', async () => {
-      const fileUrl =
-        'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en.csv';
+      const fileUrl = `${baseUrl}/politics_en.csv`;
 
-      nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
+      nock(baseUrl)
         .get('/politics_en.csv')
         .replyWithFile(200, __dirname + '/../../test/data/politics_en.csv', {
           'Content-Type': 'text/csv',
@@ -150,10 +146,9 @@ describe('EvaluationController', () => {
     });
 
     it('returns null if there is ambiguity', async () => {
-      const fileUrl =
-        'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en.ambiguity.csv';
+      const fileUrl = `${baseUrl}/politics_en.ambiguity.csv`;
 
-      nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
+      nock(baseUrl)
         .get('/politics_en.ambiguity.csv')
         .replyWithFile(
           200,
@@ -192,10 +187,9 @@ describe('EvaluationController', () => {
     });
 
     it('returns 500 when there is internal server error', async () => {
-      const fileUrl =
-        'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en.csv';
+      const fileUrl = `${baseUrl}/politics_en.csv`;
 
-      nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
+      nock(baseUrl)
         .get('/politics_en.csv')
         .reply(500, { message: 'something went terribly wrong' });
 

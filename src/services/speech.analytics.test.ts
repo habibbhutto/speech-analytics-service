@@ -200,9 +200,11 @@ describe('SpeechAnalytics', () => {
   });
 
   describe('processDatafiles()', () => {
+    const baseUrl: string = 'https://fid-recruiting.s3-eu-west-1.amazonaws.com';
+
     it('processes data files for an array of urls', async () => {
-      const fileUrl =
-        'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en.csv';
+      const fileUrl = `${baseUrl}/politics_en.csv`;
+
       nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
         .get('/politics_en.csv')
         .replyWithFile(200, __dirname + '/../../test/data/politics_en.csv', {
@@ -221,9 +223,9 @@ describe('SpeechAnalytics', () => {
       await SpeechRepository.delete({ file_url: fileUrl });
     });
     it('processes data files for a single url', async () => {
-      const fileUrl =
-        'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en.csv';
-      nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
+      const fileUrl = `${baseUrl}/politics_en.csv`;
+
+      nock(baseUrl)
         .get('/politics_en.csv')
         .replyWithFile(200, __dirname + '/../../test/data/politics_en.csv', {
           'Content-Type': 'text/csv',
@@ -241,9 +243,9 @@ describe('SpeechAnalytics', () => {
       await SpeechRepository.delete({ file_url: fileUrl });
     });
     it('does nothing if the url has been processed before', async () => {
-      const fileUrl =
-        'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en.csv';
-      nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
+      const fileUrl = `${baseUrl}/politics_en.csv`;
+
+      nock(baseUrl)
         .get('/politics_en.csv')
         .replyWithFile(200, __dirname + '/../../test/data/politics_en.csv', {
           'Content-Type': 'text/csv',
@@ -265,9 +267,9 @@ describe('SpeechAnalytics', () => {
     });
 
     it('throws error', async () => {
-      const fileUrl =
-        'https://fid-recruiting.s3-eu-west-1.amazonaws.com/politics_en.csv';
-      nock('https://fid-recruiting.s3-eu-west-1.amazonaws.com')
+      const fileUrl = `${baseUrl}/politics_en.csv`;
+
+      nock(baseUrl)
         .get('/politics_en.csv')
         .reply(400, {
           message: 'really bad request, did not like it.',
